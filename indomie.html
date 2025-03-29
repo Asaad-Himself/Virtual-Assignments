@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noodle Carton Arrangement Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-md rounded-lg p-8 w-96">
+      <h1 class="text-2xl font-bold mb-6 text-center">
+        Noodle Carton Arrangement Calculator
+      </h1>
+
+      <input
+        type="number"
+        id="cartonsInput"
+        placeholder="Enter number of cartons"
+        min="1"
+        class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <input
+        type="number"
+        id="noodlesInput"
+        placeholder="Enter noodles per carton"
+        min="1"
+        class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        onclick="arrangeNoodles()"
+        class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
+      >
+        Arrange Noodles
+      </button>
+
+      <div
+        id="result"
+        class="mt-6 text-lg font-medium text-gray-700 whitespace-pre-wrap"
+      ></div>
+    </div>
+  </body>
+    <script>
+      const arrangeNoodles = () => {
+        const cartonsInput = document.getElementById("cartonsInput");
+        const noodlesInput = document.getElementById("noodlesInput");
+        const resultDiv = document.getElementById("result");
+
+        const cartons = Number(cartonsInput.value);
+        const noodles = Number(noodlesInput.value);
+
+        if (isNaN(cartons) || cartons < 1 || isNaN(noodles) || noodles < 1) {
+          resultDiv.innerHTML =
+            "Please enter valid positive integers for both fields.";
+          return;
+        }
+
+        let result = "";
+        for (let i = 1; i <= cartons; i++) {
+          for (let j = 1; j <= noodles; j++) {
+            result += `Carton ${i} - noodle ${j}<br>`;
+          }
+        }
+
+        resultDiv.innerHTML = result;
+      };
+    </script>
+</html>

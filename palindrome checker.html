@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Palindrome Checker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-96">
+      <h1 class="text-2xl font-bold text-center mb-6">Palindrome Checker</h1>
+      <input
+        type="text"
+        id="wordInput"
+        placeholder="Enter a word"
+        class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        onclick="checkPalindrome()"
+        class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
+      >
+        Check
+      </button>
+      <div
+        id="result"
+        class="mt-6 text-lg text-center font-medium text-gray-700"
+      ></div>
+    </div>
+  </body>
+  <script>
+    const checkPalindrome = () => {
+      const word = document.getElementById("wordInput").value;
+      const resultDiv = document.getElementById("result");
+
+      let processedWord = "";
+      for (let i = 0; i < word.length; i++) {
+        const letter = word[i];
+
+        if (letter !== " " && letter !== "\t" && letter !== "<br>") {
+          processedWord += letter.toLowerCase();
+        }
+      }
+
+      let reversedWord = "";
+      for (let i = processedWord.length - 1; i >= 0; i--) {
+        reversedWord += processedWord[i];
+      }
+
+      if (processedWord === reversedWord) {
+        resultDiv.innerHTML = "It is a palindrome";
+      } else {
+        resultDiv.innerHTML = "It is not a palindrome";
+      }
+    }
+  </script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aunty Hilda's Cooking Schedule</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-md rounded-lg p-8 w-96">
+      <h1 class="text-2xl font-bold mb-6 text-center">
+        Aunty Hilda's Cooking Schedule
+      </h1>
+
+      <input
+        type="number"
+        id="daysInput"
+        placeholder="Enter number of days"
+        min="1"
+        class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <input
+        type="number"
+        id="mealsInput"
+        placeholder="Enter meals per day"
+        min="1"
+        class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        onclick="createSchedule()"
+        class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
+      >
+        Create Schedule
+      </button>
+
+      <div
+        id="result"
+        class="mt-6 text-lg font-medium text-gray-700 whitespace-pre-wrap"
+      ></div>
+    </div>
+  </body>
+  <script>
+    const createSchedule = () => {
+      const daysInput = document.getElementById("daysInput");
+      const mealsInput = document.getElementById("mealsInput");
+      const resultDiv = document.getElementById("result");
+
+      const days = Number(daysInput.value);
+      const meals = Number(mealsInput.value);
+
+      if (isNaN(days) || days < 1 || isNaN(meals) || meals < 1) {
+        resultDiv.innerHTML =
+          "Please enter valid positive integers for both fields.";
+        return;
+      }
+
+      let result = "";
+      for (let i = 1; i <= days; i++) {
+        for (let j = 1; j <= meals; j++) {
+          result += `Day ${i} - Meal ${j}<br>`;
+        }
+      }
+
+      resultDiv.innerHTML = result;
+    };
+  </script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Factorial Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-md rounded-lg p-8 w-80">
+      <h1 class="text-2xl font-bold mb-6 text-center">A Factorial Calculator</h1>
+      <input
+        type="number"
+        id="numberInput"
+        placeholder="Enter a non-negative integer"
+        min="0"
+        class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        onclick="calculateFactorial()"
+        class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
+      >
+        Calculate Factorial
+      </button>
+      <div
+        id="result"
+        class="mt-6 text-lg font-medium text-center text-gray-700"
+      ></div>
+    </div>
+  </body>
+  <script>
+    const calculateFactorial = () => {
+      const input = document.getElementById("numberInput")
+      const resultDiv = document.getElementById("result")
+      const num = Number(input.value);
+
+      if (isNaN(num) || num < 0) {
+        resultDiv.innerHTML = "Please enter a valid non-negative integer."
+        return
+      }
+
+      let factorial = 1
+      for (let i = 2; i <= num; i++) {
+        factorial *= i
+      }
+
+      resultDiv.innerHTML = `The Factorial of ${num} is ${factorial}`;
+    }
+  </script>
+</html>

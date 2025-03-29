@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CGPA</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-96">
+      <h1 class="text-2xl font-bold text-center mb-6">CGPA</h1>
+      <input
+        type="number"
+        id="scoreInput"
+        placeholder="Enter score (0 - 100)"
+        class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        onclick="cgpa()"
+        class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
+      >
+        Check
+      </button>
+      <div
+        id="result"
+        class="mt-6 text-lg text-center font-medium text-gray-700"
+      ></div>
+    </div>
+  </body>
+  <script>
+    const cgpa = () => {
+      const scoreInput = document.getElementById("scoreInput").value;
+      const score = Number(scoreInput);
+      const resultDiv = document.getElementById("result");
+      let grade = "";
+
+      if (isNaN(score) || score < 0 || score > 100) {
+        resultDiv.innerHTML = "Please enter a valid score between 0 and 100.";
+        return;
+      }
+
+      if (score >= 97 && score <= 100) {
+        grade = "A+";
+      } else if (score >= 93 && score <= 96) {
+        grade = "A";
+      } else if (score >= 90 && score <= 92) {
+        grade = "A-";
+      } else if (score >= 87 && score <= 89) {
+        grade = "B+";
+      } else if (score >= 83 && score <= 86) {
+        grade = "B";
+      } else if (score >= 80 && score <= 82) {
+        grade = "B-";
+      } else if (score >= 77 && score <= 79) {
+        grade = "C+";
+      } else if (score >= 73 && score <= 76) {
+        grade = "C";
+      } else if (score >= 70 && score <= 72) {
+        grade = "C-";
+      } else if (score >= 67 && score <= 69) {
+        grade = "D+";
+      } else if (score >= 63 && score <= 66) {
+        grade = "D";
+      } else if (score >= 60 && score <= 62) {
+        grade = "D-";
+      } else if (score >= 0 && score <= 59) {
+        grade = "F";
+      }
+
+      resultDiv.innerHTML = `The grade for score ${score} is: <strong>${grade}</strong>`;
+    };
+  </script>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Cooker Checker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-96">
+      <h1 class="text-2xl font-bold text-center mb-6">Meal Cooker Checker</h1>
+      <input
+        type="text"
+        id="mealInput"
+        placeholder="Enter a meal name"
+        class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        onclick="addMeal()"
+        class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
+      >
+        Add Meal
+      </button>
+      <div id="mealResult" class="mt-6 text-gray-700"></div>
+      <div id="mealList" class="mt-4 text-gray-600"></div>
+    </div>
+  </body>
+  <script>
+    const cookedMeals = ["jollof rice", "plantain", "pepper soup"];
+
+    const addMeal = () => {
+      const mealInput = document.getElementById("mealInput");
+      const mealName = mealInput.value.replace(/^\s+|\s+$/g, "").toLowerCase();
+      const resultDiv = document.getElementById("mealResult");
+      const listDiv = document.getElementById("mealList");
+
+      if (!mealName) {
+        resultDiv.innerHTML = "Please enter a meal name.";
+        return;
+      }
+
+      const capitalizedMeal = mealName[0].toUpperCase() + mealName.slice(1);
+
+      if (cookedMeals.includes(mealName)) {
+        resultDiv.innerHTML = `You don cook ${mealName} already, I no fit add am again, Cook something else abeg.`;
+      } else {
+        cookedMeals.push(mealName);
+        resultDiv.innerHTML = `${capitalizedMeal} cooked successfully.`;
+      }
+
+      let mealsString = "Cooked Meals: ";
+      for (let i = 0; i < cookedMeals.length; i++) {
+        mealsString += cookedMeals[i];
+        if (i !== cookedMeals.length - 1) {
+          mealsString += ", ";
+        }
+      }
+      listDiv.innerHTML = mealsString;
+
+      mealInput.value = "";
+    };
+  </script>
+</html>
